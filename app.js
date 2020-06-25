@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Handlebars helpers
-const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon, select, likeStory } = require('./helpers/hbs')
 
 // Handlebars
 app.engine(
@@ -54,6 +54,7 @@ app.engine(
             truncate,
             editIcon, 
             select,
+            likeStory,
         },
         defaultLayout: 'main',
         extname: '.hbs',

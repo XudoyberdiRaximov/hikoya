@@ -20,3 +20,8 @@ p {
 .img-small {
     width: 180px;
 }
+
+.heart-button {
+    font-size: 35px !important;
+    color: rgb(222, 80, 120) !important;
+}

@@ -118,6 +118,30 @@ router.put('/:id', ensureAuth, async (req, res) => {
     
 })
 
+// @desc    Like story
+// @route   PUT /stories/like/:id
+router.put('/like/:id/:userId', ensureAuth, async (req, res) => {
+    try {
+        let story = await Story.findById(req.params.id).lean()
+        const idUser = req.params.userId
+        let fanats = story.fans
+
+        if (fanats.includes(idUser)) {
+            let removeLikes = story.likes - 1
+            updatedFans = fanats.filter(fan => fan != idUser)
+            await Story.findOneAndUpdate({ _id: req.params.id }, { likes: removeLikes, fans: updatedFans }, { new: true })
+        } else {
+            let addLikes = story.likes + 1
+            fanats.push(idUser)
+            await Story.findOneAndUpdate({ _id: req.params.id }, { likes: addLikes, fans: fanats }, { new: true })
+        }
+
+        res.redirect('/stories')
+    } catch (err) {
+        return res.render('errors/500')
+    }
+})
+
 // @desc    Delete story
 // @route   DELETE /stories/:id
 router.delete('/:id', ensureAuth, async (req, res) => {

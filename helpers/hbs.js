@@ -11,7 +11,7 @@ module.exports = {
             new_str = str.substr(0, new_str.lastIndexOf(' '))
             new_str = new_str.length > 0 ? new_str : str.substr(0, len)
             return new_str + '...'
-        }
+        } 
         return str
     },
     stripTags: function (input) {
@@ -28,6 +28,16 @@ module.exports = {
         } else {
             return ''
         }
+    },
+    likeStory: function (storyId, loggedUser) {
+        const _id = storyId
+        const userId = loggedUser._id
+        return `<form action="/stories/like/${_id}/${userId}" method="POST" id="like-form">
+                    <input type="hidden" name="_method" value="PUT">
+                    <button type="submit" class="btn-flat">
+                        <i class="far fa-heart heart-button"></i>
+                    </button>
+                </form>`
     },
     select: function (selected, options) {
         return options
