@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { ensureAuth } = require('../middleware/auth')
 const Story = require('../models/Story')
+const User = require('../models/User')
 
 // @desc    Show add page
 // @route   GET /stories/add
@@ -16,7 +17,6 @@ router.post('/', ensureAuth, async (req, res) => {
         req.body.user = req.user.id
         await Story.create(req.body)
         res.redirect('/dashboard')
-        console.log('You added a story!!!')
     } catch (err) {
         res.render('errors/500')
     }
@@ -46,12 +46,16 @@ router.get('/:id', ensureAuth, async (req, res) => {
             .populate('user')
             .lean()
         
+        const cmts = story.comments
+    
+        
         if (!story) {
             return res.render('errors/404')
         }
 
         res.render('stories/show', {
             story,
+            cmts,
         })
     } catch (err) {
         return res.render('errors/404')
@@ -118,6 +122,25 @@ router.put('/:id', ensureAuth, async (req, res) => {
     
 })
 
+// @desc    Add comment
+// @route   PUT /stories/comment/:id/:userId
+router.put('/comment/:id/:userId', ensureAuth, async (req, res) => {
+    try {
+        let story = await Story.findById(req.params.id)
+        const user = await User.findById(req.params.userId)
+        const userName = user.displayName
+        const message = req.body.autocompleteInput
+        if (!story) return res.render('errors/404')
+        const comment = { userName, message }
+        console.log(comment)
+        let cmts = story.comments
+        cmts.unshift(comment)
+        await Story.findOneAndUpdate({ _id: req.params.id }, { comments: cmts }, { new: true })
+        res.redirect('back')
+    } catch (err) {
+        res.render('errors/500')
+    }
+})
 // @desc    Like story
 // @route   PUT /stories/like/:id
 router.put('/like/:id/:userId', ensureAuth, async (req, res) => {

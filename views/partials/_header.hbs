@@ -1,13 +1,61 @@
-<nav class="grey darken-3">
+<nav class="green darken-4">
     <div class="nav-wrapper container">
-        <a href="#" class="brand-logo center">Stories</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large">
-            <i class="fas fa-bars"></i>
-        </a>
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="/stories">Public Stories</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
+        <a href="/stories" class="brand-logo"><i class="fas fa-book-reader medium"></i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="waves-effect" href="/stories">public stories</a></li>
+            <li><a class="waves-effect" href="/dashboard">dashboard</a></li>
+            <li><a href="/about" class="waves-effect">about</a></li>
+            <li><a class="waves-effect" href="/auth/logout"><span style="color:rgb(235, 192, 201)">logout</span></a></li>
         </ul>
     </div>
 </nav>
+<ul class="sidenav" id="mobile-demo">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img class="responsive-img"
+                    src="https://brewminate.com/wp-content/uploads/2018/02/020318-45-Europe-Book-Market-Literature.jpg">
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="/stories">public stories</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="/dashboard">dashboard</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="/about" class="waves-effect">about</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="/auth/logout"><span style="color:brown">logout</span></a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+</ul>
+
+{{!-- <nav>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">Javascript</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+</ul> --}}

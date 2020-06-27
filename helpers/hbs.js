@@ -51,4 +51,22 @@ module.exports = {
                 ' selected="selected"$&'
             )
     },
+    addComment: function (storyId, loggedUser) {
+        const _id = storyId
+        const userId = loggedUser._id
+        return `<form action="/stories/comment/${_id}/${userId}" method="POST" class="col s12">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">textsms</i>
+                            <input type="text" name="autocompleteInput" id="autocompleteInput" class="autocomplete">
+                            <label for="autocompleteInput">Leave comment...</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Save" class="btn green">
+                        <a href="/stories/{{story._id}}" class="btn orange">Cancel</a>
+                    </div>
+                </form>`
+    }
 }

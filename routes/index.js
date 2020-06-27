@@ -25,4 +25,14 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
     }
 })
 
+// @desc    About
+// @route   GET /about
+router.get('/about', ensureAuth, (req, res) => {
+    try {
+        res.render('about')
+    } catch (err) {
+        res.render('errors/500')
+    }
+})
+
 module.exports = router

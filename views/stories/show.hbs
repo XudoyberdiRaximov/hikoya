@@ -9,6 +9,7 @@
                 {{{story.body}}}
             </div>
         </div>
+
     </div>
     <div class="col s12 m4">
         <div class="card center-align">
@@ -21,4 +22,18 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        {{{ addComment story._id user }}}
+    </div>
+    <div class="row">
+        <h4>Comments</h4>
+        {{#each cmts}}
+        <div class="card-content">
+            <strong>{{this.userName}}:</strong>
+            <span>{{this.message}}</span>
+        </div>
+        {{/each}}
+    </div>
 </div>
+
+    

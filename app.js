@@ -10,6 +10,7 @@ const session = require('express-session')
 const connectDB = require('./config/db')
 const MongoStore = require('connect-mongo')(session)
 
+mongoose.set('useFindAndModify', true)
 // Load config
 dotenv.config({ path: './config/config.env' })
 
@@ -42,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Handlebars helpers
-const { formatDate, stripTags, truncate, editIcon, select, likeStory } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon, select, likeStory, addComment } = require('./helpers/hbs')
 
 // Handlebars
 app.engine(
@@ -55,6 +56,7 @@ app.engine(
             editIcon, 
             select,
             likeStory,
+            addComment,
         },
         defaultLayout: 'main',
         extname: '.hbs',

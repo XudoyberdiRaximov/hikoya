@@ -25,3 +25,7 @@ p {
     font-size: 35px !important;
     color: rgb(222, 80, 120) !important;
 }
+
+ul li a {
+    font-size: large;
+}
